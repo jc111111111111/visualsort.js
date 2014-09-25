@@ -21,11 +21,14 @@ var placeHolder = 0;
 //Draw the rectangles and execute the sort
 function draw()
 {
+	//Clear the screen
 	context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
+	//Draw the values as rectangles on the screen, their height being equal to their value times the screen height
 	for(var x = 0; x < values.length; x++)
 		context.fillRect((x/numValues)*window.innerWidth, window.innerHeight, window.innerWidth/numValues, -values[x]*window.innerHeight);
 
+	//Step through the sort numSteps times
 	for(var a = 0; a < numSteps; a++)
 		step();
 }
