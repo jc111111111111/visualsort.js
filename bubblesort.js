@@ -10,11 +10,14 @@ var numValues = 100;
 //Number of steps to run per iteration of draw, usually just set this to numValues to get a good number
 var numSteps = 5;
 
+//Where we store the values to be sorted
 var values = [];
 
+//Generate the random values to be sorted
 for(var x = 0; x < numValues; x++)
 	values.push(Math.random());
 
+//Place holder used in bubble sort
 var placeHolder = 0;
 
 
@@ -33,7 +36,7 @@ function draw()
 		step();
 }
 
-//Execute the next step in the sort
+//Execute the next step in the bubblesort
 function step()
 {
 	if(values[placeHolder] > values[placeHolder+1])
