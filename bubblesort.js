@@ -4,32 +4,50 @@ context.canvas.width = window.innerWidth;
 context.canvas.height = window.innerHeight;
 setInterval(draw, 1);
 
-var num = 1000;
+//Number of values to sort
+var numValues = 100;
+
+//Number of steps to run per iteration of draw, usually just set this to numValues to get a good number
+var numSteps = 5;
+
 var values = [];
-for(var x = 0; x < num; x++)
+
+for(var x = 0; x < numValues; x++)
 	values.push(Math.random());
 
-var place = 0;
+var placeHolder = 0;
 
+
+//Draw the rectangles and execute the sort
 function draw()
 {
 	context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
 	for(var x = 0; x < values.length; x++)
-		context.fillRect((x/num)*window.innerWidth, window.innerHeight, window.innerWidth/num, -values[x]*window.innerHeight);
-	for(var a = 0; a < 1000; a++)
+		context.fillRect((x/numValues)*window.innerWidth, window.innerHeight, window.innerWidth/numValues, -values[x]*window.innerHeight);
+
+	for(var a = 0; a < numSteps; a++)
 		step();
 }
+
+//Execute the next step in the sort
 function step()
 {
-	if(values[place] > values[place+1])
-		swap(values, place, place+1);
-	place++;
-	if(place >= num-1)
-		place = 0;
+	if(values[placeHolder] > values[placeHolder+1])
+		swap(values, placeHolder, placeHolder+1);
+
+	placeHolder++;
+
+	if(placeHolder >= numValues-1)
+		placeHolder = 0;
 }
+
+//Swap the two values in the given collection
 function swap(vals, p1, p2)
 {
 	var temp = vals[p1];
+
 	vals[p1] = vals[p2];
+
 	vals[p2] = temp;
 }
